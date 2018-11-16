@@ -38,6 +38,7 @@ function getPosterURLAndSizes() {
     fetch(url)
         .then(function (response) {
             return response.json();
+        
         })
         .then(function (data) {
             console.log(data);
@@ -47,9 +48,11 @@ function getPosterURLAndSizes() {
         
             console.log(imageURL);
             console.log(imageSizes);
+        
         })
         .catch(function (error) {
             console.log(error);
+        
         })
     
 }
