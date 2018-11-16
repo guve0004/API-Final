@@ -27,7 +27,6 @@ function getDataFromLocalStorage() {
     // in local storage AND < 60 minutes old, load and use from local storage
 
     getPosterURLAndSizes();
-
 }
 
 function getPosterURLAndSizes() {
@@ -48,7 +47,6 @@ function getPosterURLAndSizes() {
         
             console.log(imageURL);
             console.log(imageSizes);
-        
         })
         .catch(function (error) {
             console.log(error);
