@@ -6,30 +6,70 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="css/main.css" />
 </head>
+
 <body>
     <main>
-        <header >
-            <img id="back-button" alt="Back Button" title="Back"/>
-            <img id="search-button" alt="Search" title="Search"/>
-            <input type="text" id="search-input" placeholder="search" />
+        <header>
+
+            <section class="title" id="movie">Movie Recommendations</section>
+
+            <div class="buttonGrp">
+                <img data-direction="left" data-src="img/caret.svg" class="iconic" id="back-button" alt="Back Button" title="Back" />
+
+                <input type="text" id="search-input" placeholder="Enter Search Data" />
+
+
+                <div class="searchButtonDiv">
+                    <img class="iconic iconic-md" data-src="img/magnifying-glass.svg" id="search-button" alt="Search" title="Search" />
+                </div>
+				<div id="modal">
+				   <img data-src="img/settings.svg" class="iconic iconic-md" alt="settings" id="modalButton" alt="Modal Button" title="Modal Button" />
+
+				</div>
+            </div>
         </header>
-        
+
         <div class="page" id="search-results">
             <section class="title"></section>
-            <section class="content"></section>
+            <section class="content flex-container"></section>
         </div>
-        
+
         <div class="page" id="recommend-results">
             <section class="title"></section>
-            <section class="content"></section>
+            <section class="content flex-container"></section>
         </div>
+
+        <footer>
+            <img src="img/tmdb.svg" height="80px" alt="TMDB Attribution" id="attrib" />
+
+            <p>&copy;
+                <time datetime="2018">2018</time> Emin Guven</p>
+        </footer>
     </main>
- 
-    
+
     <div class="attribution">
-       
+
     </div>
-    
+
+    <div class="overlay hide">&nbsp;</div>
+
+    <div class="modal off">
+        <div class="modal-header">
+            <h2>Movie or TV ?</h2>
+        </div>
+        <div class="modal-radio">
+            <input type="radio" name="mode" value="movie" id="movie" checked>
+            <label for="movie">Movie</label>
+
+            <input type="radio" name="mode" value="TV" id="TV" checked>
+            <label for="TV">TV</label>
+
+        </div>
+        <button class="cancelButton">Cancel</button>
+        <button class="saveButton">Save</button>
+
+    </div>
+
     <script src="js/iconic.min.js"></script>
     <script src="js/key.js"></script>
     <script src="js/main.js"></script>

@@ -1,0 +1,295 @@
+/*************************
+File name: main.css
+Emin Guven
+November 27, 2018
+*************************/
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,700");
+
+@import url('https://fonts.googleapis.com/css?family=Kadwa');
+
+:root{
+    --fontSS: "Poppins", Helvetica, Arial, sans-serif;
+    
+    --fontS: "Kadwa", Times New Roman, Georgia, serif;
+    
+    --colorBG: hsl(060deg, 95%, 80%); 
+/*yellow*/
+    
+    --colorBtn: hsl(205deg, 40%, 80%);
+/*light blue*/
+    
+    --colorF1: hsl(205deg, 80%, 30%);
+/*blue*/
+    
+     --colorF2: hsl(205deg, 80%, 20%);
+/*    dark blue*/
+}
+
+html {
+    box-sizing: border-box;
+    background-color: var(--colorBG);
+    font-family: var(--fontSS);
+    font-size: calc(1.5vh + 1vw + 1%);
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+
+.title {
+    grid-area: title;
+}
+
+.buttonGrp{
+    grid-area: btnGrp;
+}
+
+#back-button {
+    grid-area: bb;
+}
+
+#search-input{
+    grid-area: si;
+}
+
+#search-button {
+    grid-area: sb;
+}
+
+#modal {
+    grid-area: m;
+}
+
+footer{
+    grid-area: footer;
+}
+
+.page{
+    grid-area: pg;
+}
+
+header{
+    grid-area: header;
+}
+
+main {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "header"
+        "pg"
+        "footer"
+}
+
+header{
+    display: grid;
+    grid-row-gap: 5rem;
+    grid-template-areas: 
+        "title"
+        "btnGrp"
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: var(--colorF1);
+	text-shadow: var(--colorBtn) 0.2rem 0.2rem;
+    font-family: var(--fontS);
+    font-size: 2rem;
+    border: 0.5rem ridge var(--colorF1);
+    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-top: 2rem;
+    padding: 0.5rem;
+}
+
+#search-results>.title {
+	font-size: 1rem;
+}
+
+
+.buttonGrp{
+    display: grid;
+    grid-template-columns: 1fr 7fr 1fr 1fr;
+    grid-template-areas: 
+        "bb si sb m"
+}
+
+.searchButtonDiv{
+    position: relative;
+    left: calc(-50px - 3%);
+    top: 3px;
+    z-index: 20;
+}
+
+#back-button  {
+    width: 3rem; 
+    height: auto;
+	filter: contrast(0.7);
+	cursor: pointer;
+}
+
+#search-input {
+    left: 100px;
+    width: calc(100% - 2px);
+    height: 3rem;
+	background-color: var(--colorBtn);
+	font-size: 0.9rem;
+	color: var(--colorF1);
+    text-align: left;
+    padding-left: 3px;
+    z-index: 10;
+    text-overflow: clip;
+}
+
+#search-button {
+    height: 2.6rem;
+    width: 2.6rem;
+	filter: contrast(0.7);
+    cursor: pointer
+}
+
+.active{
+    display: block;
+}
+
+footer {
+    padding-top: 3rem;
+    text-align: center;
+	font-size: 0.8rem;
+}
+
+footer p {
+    color: var(--colorF2);
+}
+
+
+#attrib{
+    width: 6rem; 
+    height: auto;
+}
+
+.iconic-property-stroke,
+.iconic-property-fill {
+    fill: var(--colorF2);
+    stroke: var(--colorF1);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/*Add this class to the recommend and search results content sections in HTML*/
+
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movieCard {
+    width: 50rem;
+    height: auto;
+    margin: 1rem auto;
+    background-color: cornflowerblue;
+    color: white;
+	cursor: pointer;
+}
+
+.imageSection {
+    float: left;
+    width: 12rem;
+    height: 17rem;
+    margin-right: 1rem;
+    overflow: hidden;
+}
+
+/*select only the images that are direct descendants of .imageSection*/
+.imageSection > img {
+    height: 17rem;
+    margin-right: 1rem;
+}
+
+
+#modalButton {
+    width: 3rem; 
+    height: auto;
+    position: relative;
+    left: calc(-40px - 3%);
+	filter: contrast(0.7);
+    cursor: pointer;
+}
+
+#modalButton:hover{
+	animation-fill-mode: both;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  width: 500px;
+  height: 280px;
+  z-index: 200;
+  top: calc((100% - 280px)/2);
+  left: calc((100% - 500px)/2);
+  line-height: 1.5;
+  color: var(--colorF2);
+  background-color: var(--colorBtn);
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+.off {
+  transform: translateY(-400%);
+}
+.on {
+  transform: translateY(0);
+}
+
+.cancelButton,
+.saveButton {
+  width: 120px;
+  position: absolute;
+  border: none;
+  background-color: var(--colorF1);
+  color: white;
+  cursor: pointer;
+  padding: 0.25rem 2rem;
+  font-size: 1rem;
+}
+
+.saveButton {
+  bottom: 1rem;
+  right: 4rem;
+}
+
+.cancelButton {
+  bottom: 1rem;
+  left: 4rem;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: var(--colorF1);
+  color: white;
+  text-align: center;
+}
+
+.modal-radio {
+  text-align: center;
+  margin-top: 4rem;
+}
