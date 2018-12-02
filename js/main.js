@@ -8,19 +8,15 @@ let searchString = "";
 //let isInitialSearch = true;
 //let imageURLKey = "imageURL";
 //let imageSizesKey = "imageSizesKey";
-//let timeKey = "timeKey";
+let timeKey = "timeKey";
 //let modeKey = "modeKey";
-//let staleDataTimeOut = 60;
+let staleDataTimeOut = 3600;
 let lastRecommendationsURL = "";
 
 document.addEventListener("DOMContentLoaded", init);
 
-let timeKey = "timeKey";
-let staleDataTimeOut = 60;
-
 function init() {
 
-	// Elapsed time
 	getDataFromLocalStorage();
 
 	// Modal
@@ -43,7 +39,8 @@ function init() {
 	// console.log(APIKEY);
 
 	addEventListeners();
-	getDataFromLocalStorage();
+	// Elapsed time
+
 }
 
 function showOverlay(e) {
@@ -80,10 +77,27 @@ function hideModal(e) {
 function addEventListeners() {
 	let searchButton = document.querySelector(".searchButtonDiv");
 	searchButton.addEventListener("click", startSearch);
-	//	searchButton.addEventListener("click", function(){
-	//      window.location.reload();
-	//    });
+
+	let searchResults = document.getElementById("search-results");
+	document.getElementById("search-input").addEventListener("keyup",
+		function (event) {
+			if (event.keyCode === 13) {
+				startSearch();
+			}
+		});
+
+	let backButton = document.getElementById("back-button");
+	backButton.addEventListener("click", homePage);
 }
+
+function homePage() {
+	location.reload();
+
+}
+//	searchButton.addEventListener("click", function(){
+//      window.location.reload();
+//    });
+
 
 //Check if image secure base url (https) and image sizes array are saved in Loical Storage, if not call getPosterURLAndSizes() 
 //if in local storage check if saved over 60 minutes ago, if true then call getPosterURLAndSizes()
@@ -104,6 +118,7 @@ function getDataFromLocalStorage() {
 	} else {
 		saveDateToLocalStorage();
 	}
+	getPosterURLAndSizes();
 }
 
 function saveDateToLocalStorage() {
@@ -209,9 +224,9 @@ function createPage(data) {
 	title.innerHTML = "";
 
 	if (data.total_results == 0) {
-		message.innerHTML = `No results found for ${searchString}`;
+		message.innerHTML = `No results found for "${searchString}"`;
 	} else {
-		message.innerHTML = `Total results = ${data.total_results} found for ${searchString}`;
+		message.innerHTML = `Results 1-20 from a total of ${data.total_results} for "${searchString}" <br> Click on a title to get recommendations`;
 		console.log(message.innerHTML);
 	}
 
@@ -299,11 +314,12 @@ function getRecommendations() {
 }
 
 
-function saveMode() {
-	let emin = document.getElementsByName("mode");
-	if (emin[0] == 1) {
-		mode = "movie";
-	} else {
-		mode = "TV";
-	}
-}
+//function saveMode() {
+//	let emin = document.getElementsByName("mode");
+//	if (emin[0] == 1) {
+//		mode = "movie";
+//	} else {
+//		mode = "TV";
+//	}
+//	console.log(mode);
+//}
